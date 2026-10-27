@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_res_config_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.order_ocr</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="muk_ai.view_res_config_settings_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='muk_ai']" position="inside">
+                <block title="Order OCR" name="tricasia_order_ocr_settings">
+                    <setting id="ocr_default_model" string="Default OCR Model"
+                             help="Model that reads documents when a template picks none.">
+                        <field name="ocr_model_id" options="{'no_create': True}"/>
+                    </setting>
+                    <setting id="ocr_default_templates" string="Default Templates"
+                             help="Template preselected by Import OCR on sales and purchase orders.">
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label for="ocr_sale_template_id" string="Sales" class="col-lg-4 o_light_label"/>
+                                <field name="ocr_sale_template_id" options="{'no_create': True}"/>
+                            </div>
+                            <div class="row">
+                                <label for="ocr_purchase_template_id" string="Purchases" class="col-lg-4 o_light_label"/>
+                                <field name="ocr_purchase_template_id" options="{'no_create': True}"/>
+                            </div>
+                        </div>
+                        <div class="mt8">
+                            <button name="%(tricasia_order_ocr.action_ocr_template_sale)d" type="action"
+                                    string="Sales Templates" icon="oi-arrow-right" class="btn-link"/>
+                            <button name="%(tricasia_order_ocr.action_ocr_template_purchase)d" type="action"
+                                    string="Purchase Templates" icon="oi-arrow-right" class="btn-link"/>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

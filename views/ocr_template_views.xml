@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_ocr_template_list" model="ir.ui.view">
+        <field name="name">tricasia.ocr.template.list</field>
+        <field name="model">tricasia.ocr.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="order_type"/>
+                <field name="model_id" options="{'no_create': True}"/>
+                <field name="input_mode"/>
+                <field name="default_partner_id"/>
+                <field name="default_product_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ocr_template_form" model="ir.ui.view">
+        <field name="name">tricasia.ocr.template.form</field>
+        <field name="model">tricasia.ocr.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Purchase orders from ABC Co."/></h1>
+                    </div>
+                    <group>
+                        <group string="Reading">
+                            <field name="order_type" widget="radio"/>
+                            <field name="model_id" options="{'no_create': True}"
+                                   placeholder="Default OCR model from the settings"/>
+                            <field name="input_mode" widget="radio"/>
+                        </group>
+                        <group string="When nothing matches">
+                            <field name="default_partner_id"/>
+                            <field name="default_product_id"
+                                   domain="[('sale_ok' if order_type == 'sale' else 'purchase_ok', '=', True)]"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <label for="instructions"/>
+                    <field name="instructions" nolabel="1"
+                           placeholder="Hints for this layout, e.g. item codes are in the second column; prices include VAT."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ocr_template_search" model="ir.ui.view">
+        <field name="name">tricasia.ocr.template.search</field>
+        <field name="model">tricasia.ocr.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="sale" string="Sales" domain="[('order_type', '=', 'sale')]"/>
+                <filter name="purchase" string="Purchases" domain="[('order_type', '=', 'purchase')]"/>
+                <separator/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ocr_template_sale" model="ir.actions.act_window">
+        <field name="name">OCR Templates</field>
+        <field name="res_model">tricasia.ocr.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('order_type', '=', 'sale')]</field>
+        <field name="context">{'default_order_type': 'sale'}</field>
+    </record>
+
+    <record id="action_ocr_template_purchase" model="ir.actions.act_window">
+        <field name="name">OCR Templates</field>
+        <field name="res_model">tricasia.ocr.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('order_type', '=', 'purchase')]</field>
+        <field name="context">{'default_order_type': 'purchase'}</field>
+    </record>
+
+    <menuitem id="menu_ocr_template_sale"
+              action="action_ocr_template_sale"
+              parent="sale.menu_sale_config"
+              groups="sales_team.group_sale_manager"
+              sequence="40"/>
+
+    <menuitem id="menu_ocr_template_purchase"
+              action="action_ocr_template_purchase"
+              parent="purchase.menu_purchase_config"
+              groups="purchase.group_purchase_manager"
+              sequence="40"/>
+
+</odoo>

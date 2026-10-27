@@ -1,0 +1,583 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tricasia_order_ocr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20261015\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-27 15:21+0000\n"
+"PO-Revision-Date: 2026-10-27 15:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__model_id
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__ai_model_id
+msgid "AI Model"
+msgstr "Model AI"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__active
+msgid "Active"
+msgstr "Đang hoạt động"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Add a note"
+msgstr "Thêm ghi chú"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Add a product"
+msgstr "Thêm sản phẩm"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Add a section"
+msgstr "Thêm phần"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__order_type
+msgid "Applies To"
+msgstr "Áp dụng cho"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_form
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_search
+msgid "Archived"
+msgstr "Đã lưu trữ"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__attachment_id
+msgid "Attachment"
+msgstr "Tệp đính kèm"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Back"
+msgstr "Quay lại"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: tricasia_order_ocr
+#: model:ir.model,name:tricasia_order_ocr.model_res_company
+msgid "Companies"
+msgstr "Công ty"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: tricasia_order_ocr
+#: model:ir.model,name:tricasia_order_ocr.model_res_config_settings
+msgid "Config Settings"
+msgstr "Cấu hình"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Create Order"
+msgstr "Tạo đơn"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__create_uid
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__create_uid
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__create_uid
+msgid "Created by"
+msgstr "Được tạo bởi"
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+msgid ""
+"Created from %(file)s with OCR template %(template)s and model %(model)s."
+msgstr "Tạo từ %(file)s bằng mẫu OCR %(template)s và model %(model)s."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__create_date
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__create_date
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__create_date
+msgid "Created on"
+msgstr "Được tạo vào"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__currency_id
+msgid "Currency"
+msgstr "Tiền tệ"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__currency_raw
+msgid "Currency (document)"
+msgstr "Tiền tệ (trên chứng từ)"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,help:tricasia_order_ocr.field_tricasia_ocr_template__default_partner_id
+msgid "Customer or vendor used when the document partner is not found."
+msgstr ""
+"Khách hàng hoặc nhà cung cấp dùng khi không tìm thấy đối tác trên chứng từ."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_company__ocr_model_id
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_config_settings__ocr_model_id
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Default OCR Model"
+msgstr "Model OCR mặc định"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_form
+msgid "Default OCR model from the settings"
+msgstr "Model OCR mặc định trong Thiết lập"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__default_partner_id
+msgid "Default Partner"
+msgstr "Đối tác mặc định"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__default_product_id
+msgid "Default Product"
+msgstr "Sản phẩm mặc định"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_company__ocr_purchase_template_id
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_config_settings__ocr_purchase_template_id
+msgid "Default Purchase OCR Template"
+msgstr "Mẫu OCR mua hàng mặc định"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_company__ocr_sale_template_id
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_config_settings__ocr_sale_template_id
+msgid "Default Sales OCR Template"
+msgstr "Mẫu OCR bán hàng mặc định"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Default Templates"
+msgstr "Mẫu mặc định"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__date_delivery
+msgid "Delivery Date"
+msgstr "Ngày giao hàng"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__name
+msgid "Description"
+msgstr "Mô tả"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__discount
+msgid "Disc.%"
+msgstr "CK %"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_company__display_name
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__display_name
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__display_name
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__display_type
+msgid "Display Type"
+msgstr "Loại hiển thị"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__file
+msgid "Document"
+msgstr "Chứng từ"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__product_raw
+msgid "Document Item"
+msgstr "Hàng trên chứng từ"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Extract"
+msgstr "Trích xuất"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__filename
+msgid "Filename"
+msgstr "Tên tệp"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,help:tricasia_order_ocr.field_tricasia_ocr_template__instructions
+msgid ""
+"Hints for this document layout, added to the extraction prompt. E.g. \"Item "
+"codes are in the second column; prices include VAT.\""
+msgstr ""
+"Gợi ý về bố cục của mẫu chứng từ này, được thêm vào prompt trích xuất. Ví "
+"dụ: \"Mã hàng nằm ở cột thứ hai; đơn giá đã gồm VAT.\""
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_form
+msgid ""
+"Hints for this layout, e.g. item codes are in the second column; prices "
+"include VAT."
+msgstr ""
+"Gợi ý về bố cục, ví dụ: mã hàng nằm ở cột thứ hai; đơn giá đã gồm VAT."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_company__id
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_res_config_settings__id
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__id
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__id
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.purchase_order_kpis_tree_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.purchase_order_view_tree_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.sale_order_tree_ocr
+msgid "Import OCR"
+msgstr "Nhập OCR"
+
+#. module: tricasia_order_ocr
+#: model:ir.model,name:tricasia_order_ocr.model_tricasia_order_ocr_wizard
+msgid "Import Order with OCR"
+msgstr "Nhập đơn hàng bằng OCR"
+
+#. module: tricasia_order_ocr
+#: model:ir.model,name:tricasia_order_ocr.model_tricasia_order_ocr_wizard_line
+msgid "Import Order with OCR - Line"
+msgstr "Nhập đơn hàng bằng OCR - Dòng"
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+#: model:ir.actions.act_window,name:tricasia_order_ocr.action_order_ocr_wizard
+msgid "Import with OCR"
+msgstr "Nhập bằng OCR"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__instructions
+msgid "Instructions"
+msgstr "Hướng dẫn"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__write_uid
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__write_uid
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__write_date
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__write_date
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối vào"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,help:tricasia_order_ocr.field_tricasia_ocr_template__model_id
+msgid "Leave empty to use the default OCR model from the settings."
+msgstr "Để trống để dùng model OCR mặc định trong Thiết lập."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__line_ids
+msgid "Lines"
+msgstr "Dòng"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__matched
+msgid "Matched"
+msgstr "Đã khớp"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Model that reads documents when a template picks none."
+msgstr "Model đọc chứng từ khi mẫu không chọn model riêng."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__name
+msgid "Name"
+msgstr "Tên"
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+msgid ""
+"No AI model is set. Pick one on the template, or set the default OCR model "
+"in Settings > MuK AI > Order OCR."
+msgstr ""
+"Chưa chọn model AI. Hãy chọn model trên mẫu, hoặc đặt model OCR mặc định tại"
+" Thiết lập > MuK AI > OCR đơn hàng."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__note
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard_line__display_type__line_note
+msgid "Note"
+msgstr "Ghi chú"
+
+#. module: tricasia_order_ocr
+#: model:ir.actions.act_window,name:tricasia_order_ocr.action_ocr_template_purchase
+#: model:ir.actions.act_window,name:tricasia_order_ocr.action_ocr_template_sale
+#: model:ir.ui.menu,name:tricasia_order_ocr.menu_ocr_template_purchase
+#: model:ir.ui.menu,name:tricasia_order_ocr.menu_ocr_template_sale
+msgid "OCR Templates"
+msgstr "Mẫu OCR"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__date_order
+msgid "Order Date"
+msgstr "Ngày đặt hàng"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Order OCR"
+msgstr "OCR đơn hàng"
+
+#. module: tricasia_order_ocr
+#: model:ir.model,name:tricasia_order_ocr.model_tricasia_ocr_template
+msgid "Order OCR Template"
+msgstr "Mẫu OCR đơn hàng"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__order_type
+msgid "Order Type"
+msgstr "Loại đơn"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__partner_id
+msgid "Partner"
+msgstr "Đối tác"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__partner_raw
+msgid "Partner (document)"
+msgstr "Đối tác (trên chứng từ)"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__partner_matched
+msgid "Partner Matched"
+msgstr "Đã khớp đối tác"
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+msgid "Pick a partner, or set a default partner on the template."
+msgstr "Hãy chọn đối tác, hoặc đặt đối tác mặc định trên mẫu."
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+msgid "Pick a product for the line \"%s\"."
+msgstr "Hãy chọn sản phẩm cho dòng \"%s\"."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__product_id
+msgid "Product"
+msgstr "Sản phẩm"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,help:tricasia_order_ocr.field_tricasia_ocr_template__default_product_id
+msgid "Product used for a line whose product is not found."
+msgstr "Sản phẩm dùng cho dòng không tìm thấy sản phẩm."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_ocr_template__order_type__purchase
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__order_type__purchase
+msgid "Purchase Order"
+msgstr "Đơn mua hàng"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Purchase Templates"
+msgstr "Mẫu mua hàng"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_search
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Purchases"
+msgstr "Mua hàng"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__quantity
+msgid "Quantity"
+msgstr "Số lượng"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__input_mode
+msgid "Read PDF As"
+msgstr "Cách đọc PDF"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_form
+msgid "Reading"
+msgstr "Đọc chứng từ"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__reference
+msgid "Reference"
+msgstr "Số tham chiếu"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__state__review
+msgid "Review"
+msgstr "Kiểm tra"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_search
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Sales"
+msgstr "Bán hàng"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_ocr_template__order_type__sale
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__order_type__sale
+msgid "Sales Order"
+msgstr "Đơn bán hàng"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Sales Templates"
+msgstr "Mẫu bán hàng"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard_line__display_type__line_section
+msgid "Section"
+msgstr "Phần"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_ocr_template__input_mode__file
+msgid "Send the PDF file"
+msgstr "Gửi tệp PDF"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,help:tricasia_order_ocr.field_tricasia_ocr_template__input_mode
+msgid ""
+"Send the PDF file: the model reads the document itself, scans included; needs a model that accepts files (OpenAI, Anthropic, Google, Mistral, OpenRouter).\n"
+"Send the extracted text: cheaper and works with any model, Ollama included, but only for PDFs that carry a text layer."
+msgstr ""
+"Gửi tệp PDF: model tự đọc chứng từ, kể cả bản scan; cần model nhận được tệp (OpenAI, Anthropic, Google, Mistral, OpenRouter).\n"
+"Gửi văn bản trích xuất: rẻ hơn và chạy với mọi model, kể cả Ollama, nhưng chỉ dùng được cho PDF có lớp chữ."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_ocr_template__input_mode__text
+msgid "Send the extracted text"
+msgstr "Gửi văn bản trích xuất"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__sequence
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__sequence
+msgid "Sequence"
+msgstr "Thứ tự"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__state
+msgid "State"
+msgstr "Trạng thái"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__tax_ids
+msgid "Taxes"
+msgstr "Thuế"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__template_id
+msgid "Template"
+msgstr "Mẫu"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
+msgid "Template preselected by Import OCR on sales and purchase orders."
+msgstr "Mẫu được chọn sẵn khi bấm Nhập OCR ở đơn bán và đơn mua."
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Terms and remarks for the order"
+msgstr "Điều khoản và ghi chú của đơn hàng"
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+msgid ""
+"The %(provider)s provider is not configured: add its API key in MuK AI > "
+"Providers."
+msgstr ""
+"Nhà cung cấp %(provider)s chưa được cấu hình: hãy nhập API key tại MuK AI > "
+"Providers."
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+msgid ""
+"The AI model did not return readable order data:\n"
+"%s"
+msgstr ""
+"Model AI không trả về dữ liệu đơn hàng đọc được:\n"
+"%s"
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+msgid ""
+"This PDF has no text layer (it is probably a scan). Set the template to "
+"\"Send the PDF file\" and pick a model that reads files."
+msgstr ""
+"PDF này không có lớp chữ (có thể là bản scan). Hãy đặt mẫu sang \"Gửi tệp "
+"PDF\" và chọn model đọc được tệp."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__uom_id
+msgid "Unit"
+msgstr "Đơn vị"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__price_unit
+msgid "Unit Price"
+msgstr "Đơn giá"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__unmatched_count
+msgid "Unmatched Count"
+msgstr "Số mục chưa khớp"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__state__upload
+msgid "Upload"
+msgstr "Tải lên"
+
+#. module: tricasia_order_ocr
+#. odoo-python
+#: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
+msgid "Upload a PDF or an image (PNG, JPEG, WebP), not %s."
+msgstr "Hãy tải lên tệp PDF hoặc ảnh (PNG, JPEG, WebP), không phải %s."
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_form
+msgid "When nothing matches"
+msgstr "Khi không khớp dữ liệu"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Wizard"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_form
+msgid "e.g. Purchase orders from ABC Co."
+msgstr "VD: Đơn đặt hàng của Công ty ABC"
+
+#. module: tricasia_order_ocr
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid ""
+"item(s) were not found and use the\n"
+"                        template defaults (highlighted). Check them before creating the order."
+msgstr ""
+"mục không tìm thấy và đang dùng giá trị mặc định của mẫu (được tô màu). Hãy "
+"kiểm tra trước khi tạo đơn."

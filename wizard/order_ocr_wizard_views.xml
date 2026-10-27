@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_order_ocr_wizard_form" model="ir.ui.view">
+        <field name="name">tricasia.order.ocr.wizard.form</field>
+        <field name="model">tricasia.order.ocr.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="state" invisible="1"/>
+                <field name="order_type" invisible="1"/>
+                <field name="attachment_id" invisible="1"/>
+                <field name="partner_matched" invisible="1"/>
+                <group invisible="state != 'upload'">
+                    <field name="template_id" options="{'no_create': True}"/>
+                    <field name="ai_model_id"/>
+                    <field name="file" filename="filename" widget="binary"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+                <div invisible="state != 'review'">
+                    <div class="alert alert-warning" role="alert" invisible="unmatched_count == 0">
+                        <field name="unmatched_count" class="fw-bold"/> item(s) were not found and use the
+                        template defaults (highlighted). Check them before creating the order.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" required="state == 'review'"
+                                   decoration-warning="not partner_matched"/>
+                            <field name="partner_raw" invisible="not partner_raw"/>
+                            <field name="reference"/>
+                            <field name="currency_id" options="{'no_create': True}"/>
+                            <field name="currency_raw" invisible="not currency_raw"/>
+                        </group>
+                        <group>
+                            <field name="template_id" readonly="1"/>
+                            <field name="ai_model_id"/>
+                            <field name="date_order"/>
+                            <field name="date_delivery"/>
+                        </group>
+                    </group>
+                    <field name="line_ids">
+                        <list editable="bottom" decoration-warning="not display_type and not matched"
+                              decoration-bf="display_type == 'line_section'"
+                              decoration-it="display_type == 'line_note'">
+                            <control>
+                                <create name="add_product_control" string="Add a product"/>
+                                <create name="add_section_control" string="Add a section"
+                                        context="{'default_display_type': 'line_section'}"/>
+                                <create name="add_note_control" string="Add a note"
+                                        context="{'default_display_type': 'line_note'}"/>
+                            </control>
+                            <field name="sequence" widget="handle"/>
+                            <field name="display_type" column_invisible="1"/>
+                            <field name="matched" column_invisible="1" force_save="1"/>
+                            <field name="product_raw" optional="show"/>
+                            <field name="product_id" invisible="display_type"
+                                   required="not display_type"
+                                   domain="[('sale_ok' if parent.order_type == 'sale' else 'purchase_ok', '=', True)]"/>
+                            <field name="name"/>
+                            <field name="quantity" invisible="display_type"/>
+                            <field name="uom_id" invisible="display_type" options="{'no_create': True}"/>
+                            <field name="price_unit" invisible="display_type"/>
+                            <field name="discount" invisible="display_type" optional="show"/>
+                            <field name="tax_ids" widget="many2many_tags" invisible="display_type"
+                                   options="{'no_create': True}"
+                                   domain="[('type_tax_use', '=', parent.order_type)]"/>
+                        </list>
+                    </field>
+                    <group>
+                        <field name="note" placeholder="Terms and remarks for the order"/>
+                    </group>
+                </div>
+                <footer>
+                    <button name="action_extract" type="object" string="Extract"
+                            class="btn-primary" invisible="state != 'upload'"/>
+                    <button name="action_create_order" type="object" string="Create Order"
+                            class="btn-primary" invisible="state != 'review'"/>
+                    <button name="action_back" type="object" string="Back"
+                            invisible="state != 'review'"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_order_ocr_wizard" model="ir.actions.act_window">
+        <field name="name">Import with OCR</field>
+        <field name="res_model">tricasia.order.ocr.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

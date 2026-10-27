@@ -289,6 +289,7 @@ msgstr "Để trống để dùng model OCR mặc định trong Thiết lập."
 
 #. module: tricasia_order_ocr
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__line_ids
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
 msgid "Lines"
 msgstr "Dòng"
 
@@ -581,3 +582,14 @@ msgid ""
 msgstr ""
 "mục không tìm thấy và đang dùng giá trị mặc định của mẫu (được tô màu). Hãy "
 "kiểm tra trước khi tạo đơn."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__extracted_json
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Extracted JSON"
+msgstr "JSON trích xuất"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,help:tricasia_order_ocr.field_tricasia_order_ocr_wizard__extracted_json
+msgid "The data exactly as the AI model returned it, before any matching."
+msgstr "Dữ liệu đúng như model AI trả về, trước khi đối chiếu với Odoo."

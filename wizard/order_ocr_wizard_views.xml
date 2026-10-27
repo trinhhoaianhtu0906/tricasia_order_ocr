@@ -37,34 +37,42 @@
                             <field name="date_delivery"/>
                         </group>
                     </group>
-                    <field name="line_ids">
-                        <list editable="bottom" decoration-warning="not display_type and not matched"
-                              decoration-bf="display_type == 'line_section'"
-                              decoration-it="display_type == 'line_note'">
-                            <control>
-                                <create name="add_product_control" string="Add a product"/>
-                                <create name="add_section_control" string="Add a section"
-                                        context="{'default_display_type': 'line_section'}"/>
-                                <create name="add_note_control" string="Add a note"
-                                        context="{'default_display_type': 'line_note'}"/>
-                            </control>
-                            <field name="sequence" widget="handle"/>
-                            <field name="display_type" column_invisible="1"/>
-                            <field name="matched" column_invisible="1" force_save="1"/>
-                            <field name="product_raw" optional="show"/>
-                            <field name="product_id" invisible="display_type"
-                                   required="not display_type"
-                                   domain="[('sale_ok' if parent.order_type == 'sale' else 'purchase_ok', '=', True)]"/>
-                            <field name="name"/>
-                            <field name="quantity" invisible="display_type"/>
-                            <field name="uom_id" invisible="display_type" options="{'no_create': True}"/>
-                            <field name="price_unit" invisible="display_type"/>
-                            <field name="discount" invisible="display_type" optional="show"/>
-                            <field name="tax_ids" widget="many2many_tags" invisible="display_type"
-                                   options="{'no_create': True}"
-                                   domain="[('type_tax_use', '=', parent.order_type)]"/>
-                        </list>
-                    </field>
+                    <notebook>
+                        <page string="Lines" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom" decoration-warning="not display_type and not matched"
+                                      decoration-bf="display_type == 'line_section'"
+                                      decoration-it="display_type == 'line_note'">
+                                    <control>
+                                        <create name="add_product_control" string="Add a product"/>
+                                        <create name="add_section_control" string="Add a section"
+                                                context="{'default_display_type': 'line_section'}"/>
+                                        <create name="add_note_control" string="Add a note"
+                                                context="{'default_display_type': 'line_note'}"/>
+                                    </control>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="display_type" column_invisible="1"/>
+                                    <field name="matched" column_invisible="1" force_save="1"/>
+                                    <field name="product_raw" optional="show"/>
+                                    <field name="product_id" invisible="display_type"
+                                           required="not display_type"
+                                           domain="[('sale_ok' if parent.order_type == 'sale' else 'purchase_ok', '=', True)]"/>
+                                    <field name="name"/>
+                                    <field name="quantity" invisible="display_type"/>
+                                    <field name="uom_id" invisible="display_type" options="{'no_create': True}"/>
+                                    <field name="price_unit" invisible="display_type"/>
+                                    <field name="discount" invisible="display_type" optional="show"/>
+                                    <field name="tax_ids" widget="many2many_tags" invisible="display_type"
+                                           options="{'no_create': True}"
+                                           domain="[('type_tax_use', '=', parent.order_type)]"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Extracted JSON" name="extracted_json">
+                            <field name="extracted_json" nolabel="1" class="font-monospace"
+                                   style="white-space: pre;"/>
+                        </page>
+                    </notebook>
                     <group>
                         <field name="note" placeholder="Terms and remarks for the order"/>
                     </group>

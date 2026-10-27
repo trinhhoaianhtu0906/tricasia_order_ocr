@@ -124,6 +124,8 @@ class TestOrderOcr(TransactionCase):
         self.assertEqual((block['strategy'], block['mimetype']), ('file', 'application/pdf'))
 
         self.assertEqual(wizard.state, 'review')
+        self.assertEqual(json.loads(wizard.extracted_json), self._sale_reply())
+        self.assertIn('"partner_name": "CONG TY ABC"', wizard.extracted_json)
         self.assertEqual(wizard.partner_id, self.customer)
         self.assertTrue(wizard.partner_matched)
         self.assertEqual(wizard.reference, 'PO-2026-001')

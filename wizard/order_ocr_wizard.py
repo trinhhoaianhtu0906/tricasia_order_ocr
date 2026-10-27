@@ -1,4 +1,5 @@
 import base64
+import json
 import logging
 from datetime import datetime
 
@@ -62,6 +63,11 @@ class OrderOcrWizard(models.TransientModel):
     currency_raw = fields.Char(string='Currency (document)', readonly=True)
     note = fields.Text()
     line_ids = fields.One2many('tricasia.order.ocr.wizard.line', 'wizard_id', string='Lines')
+    extracted_json = fields.Text(
+        string='Extracted JSON',
+        readonly=True,
+        help='The data exactly as the AI model returned it, before any matching.',
+    )
     unmatched_count = fields.Integer(compute='_compute_unmatched_count')
 
     # ----------------------------------------------------------
@@ -189,6 +195,7 @@ class OrderOcrWizard(models.TransientModel):
         currency = self._match_currency(data.get('currency'))
         self.write({
             'state': 'review',
+            'extracted_json': json.dumps(data, ensure_ascii=False, indent=2),
             'partner_id': (partner or self.template_id.default_partner_id).id,
             'partner_matched': bool(partner),
             'partner_raw': ' / '.join(

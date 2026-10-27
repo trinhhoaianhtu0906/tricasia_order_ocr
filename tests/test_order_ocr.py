@@ -127,6 +127,7 @@ class TestOrderOcr(TransactionCase):
         self.assertEqual(json.loads(wizard.extracted_json), self._sale_reply())
         self.assertIn('"partner_name": "CONG TY ABC"', wizard.extracted_json)
         self.assertEqual(wizard.partner_id, self.customer)
+        self.assertEqual(wizard.partner_match_type, 'vat')
         self.assertTrue(wizard.partner_matched)
         self.assertEqual(wizard.reference, 'PO-2026-001')
         self.assertEqual(str(wizard.date_delivery.date()), '2026-11-05')
@@ -149,12 +150,45 @@ class TestOrderOcr(TransactionCase):
         self.assertEqual(unknown.tax_ids, self.default_product.taxes_id.filtered(
             lambda t: t.company_id == self.env.company))
         self.assertEqual(wizard.unmatched_count, 1)
+        self.assertEqual(
+            [line.match_type for line in wizard.line_ids],
+            [False, 'code', 'barcode', False, 'default'],
+        )
+
+    def test_match_by_name_and_partial_name(self):
+        reply = self._sale_reply()
+        reply['partner_name'], reply['partner_vat'] = 'ABC', None
+        reply['lines'][1]['code'] = None
+        reply['lines'][1]['description'] = 'BUT BI'
+        wizard = self._wizard(template_id=self.sale_template.id)
+        self._extract(wizard, reply)
+        self.assertEqual((wizard.partner_id, wizard.partner_match_type), (self.customer, 'partial_name'))
+        self.assertEqual((wizard.line_ids[1].product_id, wizard.line_ids[1].match_type), (self.pen, 'name'))
+
+        reply['partner_name'] = 'cong ty abc'
+        wizard = self._wizard(template_id=self.sale_template.id)
+        self._extract(wizard, reply)
+        self.assertEqual(wizard.partner_match_type, 'name')
+
+    def test_picking_by_hand_marks_manual(self):
+        wizard = self._wizard(template_id=self.sale_template.id)
+        self._extract(wizard, {**self._sale_reply(), 'partner_name': 'Nobody', 'partner_vat': None})
+        unknown = wizard.line_ids[4]
+        unknown.product_id = self.pen
+        unknown._onchange_product_id()
+        self.assertEqual(unknown.match_type, 'manual')
+        self.assertTrue(unknown.matched)
+        wizard.partner_id = self.customer
+        wizard._onchange_partner_id()
+        self.assertEqual(wizard.partner_match_type, 'manual')
+        self.assertEqual(wizard.unmatched_count, 0)
 
     def test_unknown_partner_falls_back(self):
         reply = {**self._sale_reply(), 'partner_name': 'Cong ty khong ton tai', 'partner_vat': None}
         wizard = self._wizard(template_id=self.sale_template.id)
         self._extract(wizard, reply)
         self.assertEqual(wizard.partner_id, self.default_partner)
+        self.assertEqual(wizard.partner_match_type, 'default')
         self.assertFalse(wizard.partner_matched)
         self.assertEqual(wizard.partner_raw, 'Cong ty khong ton tai')
         self.assertEqual(wizard.unmatched_count, 2)
@@ -249,7 +283,9 @@ class TestOrderOcr(TransactionCase):
         wizard = self._wizard('purchase', template_id=self.purchase_template.id)
         self._extract(wizard, reply)
         self.assertEqual(wizard.partner_id, self.vendor)
+        self.assertEqual(wizard.partner_match_type, 'name')
         self.assertEqual(wizard.line_ids[1].product_id, self.ink)
+        self.assertEqual(wizard.line_ids[1].match_type, 'vendor_code')
 
         order = self.env['purchase.order'].browse(wizard.action_create_order()['res_id'])
         self.assertEqual(order.partner_ref, 'BG-77')

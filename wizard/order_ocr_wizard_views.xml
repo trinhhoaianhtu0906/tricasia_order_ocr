@@ -25,6 +25,10 @@
                         <group>
                             <field name="partner_id" required="state == 'review'"
                                    decoration-warning="not partner_matched"/>
+                            <field name="partner_match_type" widget="badge" force_save="1"
+                                   decoration-success="partner_match_type == 'vat'"
+                                   decoration-info="partner_match_type in ('name', 'partial_name', 'manual')"
+                                   decoration-warning="partner_match_type == 'default'"/>
                             <field name="partner_raw" invisible="not partner_raw"/>
                             <field name="reference"/>
                             <field name="currency_id" options="{'no_create': True}"/>
@@ -52,11 +56,16 @@
                                     </control>
                                     <field name="sequence" widget="handle"/>
                                     <field name="display_type" column_invisible="1"/>
-                                    <field name="matched" column_invisible="1" force_save="1"/>
+                                    <field name="matched" column_invisible="1"/>
                                     <field name="product_raw" optional="show"/>
                                     <field name="product_id" invisible="display_type"
                                            required="not display_type"
                                            domain="[('sale_ok' if parent.order_type == 'sale' else 'purchase_ok', '=', True)]"/>
+                                    <field name="match_type" widget="badge" force_save="1"
+                                           invisible="display_type" optional="show"
+                                           decoration-success="match_type in ('code', 'barcode', 'vendor_code')"
+                                           decoration-info="match_type in ('name', 'manual')"
+                                           decoration-warning="match_type == 'default'"/>
                                     <field name="name"/>
                                     <field name="quantity" invisible="display_type"/>
                                     <field name="uom_id" invisible="display_type" options="{'no_create': True}"/>

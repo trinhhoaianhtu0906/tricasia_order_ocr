@@ -20,6 +20,21 @@ _logger = logging.getLogger(__name__)
 ACCEPTED_MIMETYPES = ('application/pdf', 'image/png', 'image/jpeg', 'image/webp')
 SCHEMA_ERROR_TOKENS = ('schema', 'response_format', 'json', 'structured', 'format')
 DISPLAY_TYPES = {'section': 'line_section', 'note': 'line_note'}
+PARTNER_MATCH_TYPES = [
+    ('vat', 'Tax ID'),
+    ('name', 'Exact Name'),
+    ('partial_name', 'Partial Name'),
+    ('manual', 'Picked by Hand'),
+    ('default', 'Template Default'),
+]
+PRODUCT_MATCH_TYPES = [
+    ('code', 'Internal Reference (SKU)'),
+    ('barcode', 'Barcode'),
+    ('vendor_code', 'Vendor Product Code'),
+    ('name', 'Name'),
+    ('manual', 'Picked by Hand'),
+    ('default', 'Template Default'),
+]
 
 
 class OrderOcrWizard(models.TransientModel):
@@ -55,7 +70,12 @@ class OrderOcrWizard(models.TransientModel):
 
     partner_id = fields.Many2one('res.partner', string='Partner')
     partner_raw = fields.Char(string='Partner (document)', readonly=True)
-    partner_matched = fields.Boolean(readonly=True)
+    partner_match_type = fields.Selection(
+        PARTNER_MATCH_TYPES,
+        string='Partner Matched By',
+        readonly=True,
+    )
+    partner_matched = fields.Boolean(compute='_compute_partner_matched')
     reference = fields.Char()
     date_order = fields.Datetime(string='Order Date')
     date_delivery = fields.Datetime(string='Delivery Date')
@@ -92,6 +112,17 @@ class OrderOcrWizard(models.TransientModel):
                 wizard.template_id._get_model() if wizard.template_id
                 else self.env.company.ocr_model_id
             )
+
+    @api.depends('partner_match_type')
+    def _compute_partner_matched(self):
+        for wizard in self:
+            wizard.partner_matched = wizard.partner_match_type not in (False, 'default')
+
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        """A partner picked by hand during review counts as matched."""
+        if self.state == 'review' and self.partner_id:
+            self.partner_match_type = 'manual'
 
     @api.depends('line_ids.matched', 'partner_matched', 'state')
     def _compute_unmatched_count(self):
@@ -191,13 +222,15 @@ class OrderOcrWizard(models.TransientModel):
 
     def _load_extraction(self, data):
         """Map the extracted dict onto the review fields, falling back to template defaults."""
-        partner = self._match_partner(data.get('partner_name'), data.get('partner_vat'))
+        partner, partner_match_type = self._match_partner(
+            data.get('partner_name'), data.get('partner_vat')
+        )
         currency = self._match_currency(data.get('currency'))
         self.write({
             'state': 'review',
             'extracted_json': json.dumps(data, ensure_ascii=False, indent=2),
             'partner_id': (partner or self.template_id.default_partner_id).id,
-            'partner_matched': bool(partner),
+            'partner_match_type': partner_match_type,
             'partner_raw': ' / '.join(
                 str(value) for value in (data.get('partner_name'), data.get('partner_vat')) if value
             ),
@@ -220,7 +253,7 @@ class OrderOcrWizard(models.TransientModel):
         if display_type:
             return {'sequence': sequence * 10, 'display_type': display_type, 'name': description or '-'}
         code = (line.get('code') or '').strip()
-        product = self._match_product(code, description, partner)
+        product, match_type = self._match_product(code, description, partner)
         fallback = product or self.template_id.default_product_id
         price = line.get('unit_price')
         if price is None and fallback:
@@ -229,7 +262,7 @@ class OrderOcrWizard(models.TransientModel):
         return {
             'sequence': sequence * 10,
             'product_id': fallback.id,
-            'matched': bool(product),
+            'match_type': match_type,
             'product_raw': name,
             'name': description or (fallback.display_name if fallback else '') or code or '-',
             'quantity': line.get('quantity') or 1.0,
@@ -240,41 +273,53 @@ class OrderOcrWizard(models.TransientModel):
         }
 
     def _match_partner(self, name, vat):
-        """Find the partner by tax ID first, then by exact name, then by a unique partial name."""
+        """Find the partner by tax ID first, then by exact name, then by a unique partial name.
+
+        :return: the commercial partner and how it was found (a ``PARTNER_MATCH_TYPES`` key)
+        """
         Partner = self.env['res.partner']
         company_domain = [('company_id', 'in', [False, self.env.company.id])]
         vat = ''.join(ch for ch in (vat or '') if ch.isalnum())
         if vat:
             partner = Partner.search(company_domain + [('vat', 'ilike', vat)], limit=1)
             if partner:
-                return partner.commercial_partner_id
+                return partner.commercial_partner_id, 'vat'
         name = (name or '').strip()
         if not name:
-            return Partner
+            return Partner, 'default'
         partner = Partner.search(company_domain + [('name', '=ilike', name)], limit=1)
-        if not partner:
-            candidates = Partner.search(
-                company_domain + [('name', 'ilike', name), ('is_company', '=', True)], limit=2
-            )
-            partner = candidates if len(candidates) == 1 else Partner
-        return partner.commercial_partner_id
+        if partner:
+            return partner.commercial_partner_id, 'name'
+        candidates = Partner.search(
+            company_domain + [('name', 'ilike', name), ('is_company', '=', True)], limit=2
+        )
+        if len(candidates) == 1:
+            return candidates.commercial_partner_id, 'partial_name'
+        return Partner, 'default'
 
     def _match_product(self, code, description, partner):
-        """Find the product by internal code, barcode, vendor code (purchases), then name."""
+        """Find the product by internal code, barcode, vendor code (purchases), then name.
+
+        :return: the product and how it was found (a ``PRODUCT_MATCH_TYPES`` key)
+        """
         Product = self.env['product.product']
         domain = [('sale_ok' if self.order_type == 'sale' else 'purchase_ok', '=', True)]
         if code:
-            product = (
-                Product.search(domain + [('default_code', '=ilike', code)], limit=1)
-                or Product.search(domain + [('barcode', '=', code)], limit=1)
-            )
-            if not product and self.order_type == 'purchase':
-                product = self._match_vendor_code(code, partner)
+            product = Product.search(domain + [('default_code', '=ilike', code)], limit=1)
             if product:
-                return product
+                return product, 'code'
+            product = Product.search(domain + [('barcode', '=', code)], limit=1)
+            if product:
+                return product, 'barcode'
+            if self.order_type == 'purchase':
+                product = self._match_vendor_code(code, partner)
+                if product:
+                    return product, 'vendor_code'
         if description:
-            return Product.search(domain + [('name', '=ilike', description)], limit=1)
-        return Product
+            product = Product.search(domain + [('name', '=ilike', description)], limit=1)
+            if product:
+                return product, 'name'
+        return Product, 'default'
 
     def _match_vendor_code(self, code, partner):
         """Return the product a vendor price list entry names with ``code``."""
@@ -421,7 +466,8 @@ class OrderOcrWizardLine(models.TransientModel):
     sequence = fields.Integer(default=10)
     display_type = fields.Selection([('line_section', 'Section'), ('line_note', 'Note')])
     product_id = fields.Many2one('product.product', string='Product')
-    matched = fields.Boolean(readonly=True)
+    match_type = fields.Selection(PRODUCT_MATCH_TYPES, string='Matched By', readonly=True)
+    matched = fields.Boolean(compute='_compute_matched')
     product_raw = fields.Char(string='Document Item', readonly=True)
     name = fields.Text(string='Description', required=True)
     quantity = fields.Float(default=1.0, digits='Product Unit')
@@ -430,9 +476,14 @@ class OrderOcrWizardLine(models.TransientModel):
     discount = fields.Float(string='Disc.%', digits='Discount')
     tax_ids = fields.Many2many('account.tax', string='Taxes')
 
+    @api.depends('match_type')
+    def _compute_matched(self):
+        for line in self:
+            line.matched = line.match_type not in (False, 'default')
+
     @api.onchange('product_id')
     def _onchange_product_id(self):
         """A product picked by hand counts as matched and brings its unit."""
         if self.product_id:
-            self.matched = True
+            self.match_type = 'manual'
             self.uom_id = self.uom_id or self.product_id.uom_id

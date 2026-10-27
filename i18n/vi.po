@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20261015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-27 15:21+0000\n"
-"PO-Revision-Date: 2026-10-27 15:21+0000\n"
+"POT-Creation-Date: 2026-10-27 15:49+0000\n"
+"PO-Revision-Date: 2026-10-27 15:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: vi\n"
@@ -62,6 +62,11 @@ msgstr "Tệp đính kèm"
 #: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
 msgid "Back"
 msgstr "Quay lại"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard_line__match_type__barcode
+msgid "Barcode"
+msgstr "Mã vạch"
 
 #. module: tricasia_order_ocr
 #: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
@@ -204,9 +209,20 @@ msgid "Document Item"
 msgstr "Hàng trên chứng từ"
 
 #. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__partner_match_type__name
+msgid "Exact Name"
+msgstr "Tên chính xác"
+
+#. module: tricasia_order_ocr
 #: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
 msgid "Extract"
 msgstr "Trích xuất"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__extracted_json
+#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
+msgid "Extracted JSON"
+msgstr "JSON trích xuất"
 
 #. module: tricasia_order_ocr
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__filename
@@ -269,6 +285,11 @@ msgid "Instructions"
 msgstr "Hướng dẫn"
 
 #. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard_line__match_type__code
+msgid "Internal Reference (SKU)"
+msgstr "Mã nội bộ (SKU)"
+
+#. module: tricasia_order_ocr
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__write_uid
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__write_uid
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__write_uid
@@ -299,12 +320,18 @@ msgid "Matched"
 msgstr "Đã khớp"
 
 #. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__match_type
+msgid "Matched By"
+msgstr "Kiểu khớp"
+
+#. module: tricasia_order_ocr
 #: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
 msgid "Model that reads documents when a template picks none."
 msgstr "Model đọc chứng từ khi mẫu không chọn model riêng."
 
 #. module: tricasia_order_ocr
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_ocr_template__name
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard_line__match_type__name
 msgid "Name"
 msgstr "Tên"
 
@@ -353,6 +380,11 @@ msgid "Order Type"
 msgstr "Loại đơn"
 
 #. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__partner_match_type__partial_name
+msgid "Partial Name"
+msgstr "Tên gần đúng"
+
+#. module: tricasia_order_ocr
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__partner_id
 msgid "Partner"
 msgstr "Đối tác"
@@ -368,6 +400,11 @@ msgid "Partner Matched"
 msgstr "Đã khớp đối tác"
 
 #. module: tricasia_order_ocr
+#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__partner_match_type
+msgid "Partner Matched By"
+msgstr "Kiểu khớp đối tác"
+
+#. module: tricasia_order_ocr
 #. odoo-python
 #: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
 msgid "Pick a partner, or set a default partner on the template."
@@ -378,6 +415,12 @@ msgstr "Hãy chọn đối tác, hoặc đặt đối tác mặc định trên m
 #: code:addons/tricasia_order_ocr/wizard/order_ocr_wizard.py:0
 msgid "Pick a product for the line \"%s\"."
 msgstr "Hãy chọn sản phẩm cho dòng \"%s\"."
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__partner_match_type__manual
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard_line__match_type__manual
+msgid "Picked by Hand"
+msgstr "Chọn tay"
 
 #. module: tricasia_order_ocr
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__product_id
@@ -484,6 +527,11 @@ msgid "State"
 msgstr "Trạng thái"
 
 #. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__partner_match_type__vat
+msgid "Tax ID"
+msgstr "Mã số thuế"
+
+#. module: tricasia_order_ocr
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard_line__tax_ids
 msgid "Taxes"
 msgstr "Thuế"
@@ -492,6 +540,12 @@ msgstr "Thuế"
 #: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__template_id
 msgid "Template"
 msgstr "Mẫu"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard__partner_match_type__default
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard_line__match_type__default
+msgid "Template Default"
+msgstr "Mặc định của mẫu"
 
 #. module: tricasia_order_ocr
 #: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_res_config_settings_form
@@ -522,6 +576,11 @@ msgid ""
 msgstr ""
 "Model AI không trả về dữ liệu đơn hàng đọc được:\n"
 "%s"
+
+#. module: tricasia_order_ocr
+#: model:ir.model.fields,help:tricasia_order_ocr.field_tricasia_order_ocr_wizard__extracted_json
+msgid "The data exactly as the AI model returned it, before any matching."
+msgstr "Dữ liệu đúng như model AI trả về, trước khi đối chiếu với Odoo."
 
 #. module: tricasia_order_ocr
 #. odoo-python
@@ -560,6 +619,11 @@ msgid "Upload a PDF or an image (PNG, JPEG, WebP), not %s."
 msgstr "Hãy tải lên tệp PDF hoặc ảnh (PNG, JPEG, WebP), không phải %s."
 
 #. module: tricasia_order_ocr
+#: model:ir.model.fields.selection,name:tricasia_order_ocr.selection__tricasia_order_ocr_wizard_line__match_type__vendor_code
+msgid "Vendor Product Code"
+msgstr "Mã hàng NCC"
+
+#. module: tricasia_order_ocr
 #: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_ocr_template_form
 msgid "When nothing matches"
 msgstr "Khi không khớp dữ liệu"
@@ -582,14 +646,3 @@ msgid ""
 msgstr ""
 "mục không tìm thấy và đang dùng giá trị mặc định của mẫu (được tô màu). Hãy "
 "kiểm tra trước khi tạo đơn."
-
-#. module: tricasia_order_ocr
-#: model:ir.model.fields,field_description:tricasia_order_ocr.field_tricasia_order_ocr_wizard__extracted_json
-#: model_terms:ir.ui.view,arch_db:tricasia_order_ocr.view_order_ocr_wizard_form
-msgid "Extracted JSON"
-msgstr "JSON trích xuất"
-
-#. module: tricasia_order_ocr
-#: model:ir.model.fields,help:tricasia_order_ocr.field_tricasia_order_ocr_wizard__extracted_json
-msgid "The data exactly as the AI model returned it, before any matching."
-msgstr "Dữ liệu đúng như model AI trả về, trước khi đối chiếu với Odoo."
